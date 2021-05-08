@@ -1,0 +1,95 @@
+:root {
+  --main-bg-color: #f4f6f9;
+  --secondary-bg-color: #40485a;
+  --main-theme-color: #ffffff;
+  --secondary-theme-color: #777777;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  font-size: 16px;
+  font-family: 'Cabin Sketch', cursive;
+  background: var(--main-bg-color);
+}
+
+ul, li {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
+input {
+  border: none;
+}
+
+input:focus {
+  outline: none;
+}
+
+.popup {
+  width: 250px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+}
+
+.form {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  background: var(--secondary-bg-color);
+  padding: 0 10px;
+}
+
+.form__title {
+  color: var(--main-theme-color);
+  margin-right: 5px;
+}
+
+.form__input {
+  background: transparent;
+  border-bottom: 1px solid var(--main-theme-color);
+  height: 20px;
+  color: var(--main-theme-color);
+  font-family: 'Cabin Sketch', cursive;
+}
+
+.list {
+  padding: 15px;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.list__item {
+  display: flex;
+  color: var(--secondary-theme-color);
+  background: var(--main-theme-color);
+  padding: 10px;
+  box-shadow: 0 0 9px 0 rgb(0 0 0 / 10%);
+  border-radius: 3px;
+  margin-bottom: 12px;
+}
+
+.list__item-checkbox {
+  margin-right: 10px;
+}
+
+.list__item-label {
+  display: inline-block;
+  width: calc(100% - 50px);
+  flex: 1;
+}
+
+.list__item-delete-icon {
+  cursor: pointer;
+}
+
+.list__error-message.hidden,
+.list__empty-message.hidden {
+  display: none;
+}

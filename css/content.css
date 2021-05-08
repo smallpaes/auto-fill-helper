@@ -1,0 +1,13 @@
+/*Alert Message*/
+.alert-message {
+  padding: .5rem;
+  color: rgb(255, 255, 255);
+  font-weight: 700;
+  font-size: 1.2rem;
+  background: #f44336;
+}
+
+.alert-message .closebtn {
+  font-size: 1.4rem;
+  cursor: pointer;
+}

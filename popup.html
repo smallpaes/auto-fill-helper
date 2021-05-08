@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Placeholder Image</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.css">
+    <link href="https://fonts.googleapis.com/css?family=Cabin+Sketch:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/popup.css">
+  </head>
+  <body>
+    <section class="popup">
+      <!--Add new person-->
+      <form class="form">
+        <label for="name" class="form__title">New Name</label>
+        <input type="text" name="name" id="name" class="form__input" autofocus>
+      </form>
+      <!--Display name list-->
+      <ul class="list">
+        <li class="list__empty-message"><i class="far fa-surprise"></i> No one is added</li>
+        <li class="list__error-message hidden"><i class="far fa-sad-cry"></i> Something went wrong</li>
+      </ul>
+    </section>
+    <script src="js/popup.js"></script>
+  </body>
+</html>
