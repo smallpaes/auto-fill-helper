@@ -62,7 +62,14 @@ Select the extension directory: auto-fill-helper
 1. Focus on any **editable field** on the webpage.
 2. Right Click on the **editable field** to open the right-click menu.
 3. Choose **Auto Fill** to insert all the selected names converted.
+
+![Screen Shot of auto-fill using context menu in GIF](https://drive.google.com/uc?export=view&id=1CXWF1KrmbwiizTrRdM3Uq0Vt4WECklh2)
+
+
 4. Alternatively, auto fill using keyboard shortcuts: Command+Shift+0 (Mac) / Ctrl+Shift+0 (Others)
+
+![Screen Shot of auto-fill using keyboard shortcut in GIF](https://drive.google.com/uc?export=view&id=1lYMkC3q_AUHkVw-nx0wFQFQWZhWyRyqR)
+
 
 
 ## Authors
