@@ -48,7 +48,7 @@ Select the extension directory: auto-fill-helper
 ![image](https://drive.google.com/uc?export=view&id=1U7_mOKCdQUylOO8Vy_gurbRectbGkrgw)
 
 ## How To Use
-### Manage Name List
+### Name List Management
 1. Click on extension icon.
 2. Key in the name to input field.
 3. Press enter to add the name into the list.
@@ -56,6 +56,7 @@ Select the extension directory: auto-fill-helper
 5. Click the trash can icon to remove the name from the list.
 
 
+![Screen Shot of name list management in GIF](https://drive.google.com/uc?export=view&id=1XusOOWUKncHI-fjDkfL0KwFi6uNoPsxi)
 
 ### Auto fill in tagged names
 1. Focus on any **editable field** on the webpage.

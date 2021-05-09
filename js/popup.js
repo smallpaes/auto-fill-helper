@@ -49,9 +49,8 @@ function initDisplayList () {
     // pass the data retrieved
     nameDataList = storedNameDataList[STORAGE_KEY] || []
     // empty name data
-    console.log(nameDataList, nameDataList.length > 0, failedMessage.classList)
     if (nameDataList.length > 0) {
-      emptyMessage.classList.add('hidden')
+      toggleEmptyMessage()
       // display the list
       displayList(...nameDataList)
     }
@@ -76,7 +75,6 @@ function storeNewName (nameData) {
 function updateSelectState (nameDataIndex) {
   nameDataIndex = parseInt(nameDataIndex, 10)
   nameDataList = nameDataList.map((nameData, index) => {
-    console.log(nameDataIndex, index)
     if (index !== nameDataIndex) return nameData
     return { ...nameData, isSelected: !nameData.isSelected }
   })
@@ -89,6 +87,10 @@ function removeName (nameDataIndex) {
   return updateDataToStore(STORAGE_KEY, nameDataList)
 }
 
+function toggleEmptyMessage () {
+  emptyMessage.classList.toggle('hidden')
+}
+
 form.addEventListener('submit', async event => {
   event.preventDefault()
   const name = nameInput.value
@@ -96,7 +98,7 @@ form.addEventListener('submit', async event => {
   
   try {
     const nameData = new Name(name)
-    if (nameDataList.length === 0) emptyMessage.classList.add('hidden')
+    if (nameDataList.length === 0) toggleEmptyMessage()
     await storeNewName(nameData)
     displayList(nameData)
     nameInput.value = ''
@@ -106,7 +108,6 @@ form.addEventListener('submit', async event => {
 })
 
 displayedList.addEventListener('click', async event => {
-  console.log(event.target.tagName)
   if (event.target.tagName !== 'INPUT' && event.target.tagName !== 'I') return
 
   // find the index of the name in the list
@@ -121,9 +122,8 @@ displayedList.addEventListener('click', async event => {
     if (isDeleteIcon) {
       await removeName(nameDataIndex)
       event.target.closest('.list__item').remove()
-      console.log(nameDataList.length === 0, emptyMessage.classList)
       // TODO
-      if (nameDataList.length === 0) emptyMessage.classList.remove('hidden')
+      if (nameDataList.length === 0) toggleEmptyMessage()
     }
   } catch (e) {
     // TODO
