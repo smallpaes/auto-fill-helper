@@ -18,11 +18,12 @@ class Name {
 }
 
 function displayList (...list) {
+  console.log(nameDataList)
   displayedList.innerHTML += list.map((nameData, index) => {
     return `
       <li 
         class="list__item"
-        data-index=${index}
+        data-name="${nameData.name}"
       >
         <input
           type="checkbox" 
@@ -74,18 +75,16 @@ function storeNewName (nameData) {
 }
 
 
-function updateSelectState (nameDataIndex) {
-  nameDataIndex = parseInt(nameDataIndex, 10)
-  nameDataList = nameDataList.map((nameData, index) => {
-    if (index !== nameDataIndex) return nameData
+function updateSelectState (selectedName) {
+  nameDataList = nameDataList.map(nameData => {
+    if (nameData.name !== selectedName) return nameData
     return { ...nameData, isSelected: !nameData.isSelected }
   })
   return updateDataToStore(STORAGE_KEY, nameDataList)
 }
 
-function removeName (nameDataIndex) {
-  nameDataIndex = parseInt(nameDataIndex, 10)
-  nameDataList = nameDataList.filter((nameData, index) => index !== nameDataIndex)
+function removeName(selectedName) {
+  nameDataList = nameDataList.filter(nameData => nameData.name !== selectedName)
   return updateDataToStore(STORAGE_KEY, nameDataList)
 }
 
@@ -135,18 +134,18 @@ async function handleFormSubmit (event) {
 displayedList.addEventListener('click', async event => {
   if (event.target.tagName !== 'INPUT' && event.target.tagName !== 'I') return
 
-  // find the index of the name in the list
-  const nameDataIndex = event.target.closest('.list__item').dataset.index
+  const selectedNameItem = event.target.closest('.list__item')
+  const selectedName = selectedNameItem.dataset.name
 
   try {
     const isDeleteIcon = event.target.classList.contains('list__item-delete-icon')
     const isCheckBox = event.target.classList.contains('list__item-checkbox')
     // update nameData selected state
-    isCheckBox && await updateSelectState(nameDataIndex)
+    isCheckBox && await updateSelectState(selectedName)
     // remove selected nameData
     if (isDeleteIcon) {
-      await removeName(nameDataIndex)
-      event.target.closest('.list__item').remove()
+      await removeName(selectedName)
+      selectedNameItem.remove()
       // TODO
       if (nameDataList.length === 0) toggleEmptyMessage()
     }
