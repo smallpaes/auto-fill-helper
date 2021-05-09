@@ -109,22 +109,28 @@ function validateInput (event) {
   ) inputErrorMessage.classList.toggle('hidden')
 }
 
-form.addEventListener('submit', async event => {
+function resetInput () {
+  nameInput.value = ''
+  isValidName = null
+}
+
+async function handleFormSubmit (event) {
+  // prevent browser default behavior
   event.preventDefault()
+  // validate name entered
   const name = nameInput.value
   if (!isValidName) return
-  
+
   try {
     const nameData = new Name(name)
-    if (nameDataList.length === 0) toggleEmptyMessage()
+    !nameDataList.length && toggleEmptyMessage()
     await storeNewName(nameData)
     displayList(nameData)
-    nameInput.value = ''
-    isValidName = null
+    resetInput()
   } catch (e) {
     // TODO
   }
-})
+}
 
 displayedList.addEventListener('click', async event => {
   if (event.target.tagName !== 'INPUT' && event.target.tagName !== 'I') return
@@ -148,6 +154,8 @@ displayedList.addEventListener('click', async event => {
     // TODO
   }
 })
+
+form.addEventListener('submit', handleFormSubmit)
 
 nameInput.addEventListener('input', validateInput)
 
