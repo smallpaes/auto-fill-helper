@@ -3,10 +3,12 @@ const nameInput = document.querySelector('.form__input')
 const displayedList = document.querySelector('.list')
 const emptyMessage = document.querySelector('.list__empty-message')
 const failedMessage = document.querySelector('.list__error-message')
+const inputErrorMessage = document.querySelector('.form__error-message')
 
 const STORAGE_KEY = 'nameDataList'
 
 let nameDataList = []
+let isValidName = null
 
 class Name {
   constructor (name) {
@@ -91,10 +93,26 @@ function toggleEmptyMessage () {
   emptyMessage.classList.toggle('hidden')
 }
 
+function validateInput (event) {
+  const inputName = event.target.value
+  // update validation status
+  if (inputName.trim() === '') {
+    isValidName = null
+  } else {
+    isValidName = !nameDataList.some(nameData => nameData.name === inputName)
+  }
+
+  const isShowInputErrorMessage = !inputErrorMessage.classList.contains('hidden')
+  if (
+    ((isValidName || isValidName === null) && isShowInputErrorMessage)
+    || (isValidName === false && !isShowInputErrorMessage)
+  ) inputErrorMessage.classList.toggle('hidden')
+}
+
 form.addEventListener('submit', async event => {
   event.preventDefault()
   const name = nameInput.value
-  if (name.trim().length === 0) return
+  if (!isValidName) return
   
   try {
     const nameData = new Name(name)
@@ -102,6 +120,7 @@ form.addEventListener('submit', async event => {
     await storeNewName(nameData)
     displayList(nameData)
     nameInput.value = ''
+    isValidName = null
   } catch (e) {
     // TODO
   }
@@ -129,5 +148,7 @@ displayedList.addEventListener('click', async event => {
     // TODO
   }
 })
+
+nameInput.addEventListener('input', validateInput)
 
 document.addEventListener('DOMContentLoaded', initDisplayList)

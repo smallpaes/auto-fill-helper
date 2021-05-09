@@ -3,6 +3,7 @@
   --secondary-bg-color: #40485a;
   --main-theme-color: #ffffff;
   --secondary-theme-color: #777777;
+  --warning-theme-color: #e61818;
 }
 
 * {
@@ -44,6 +45,7 @@ input:focus {
   align-items: center;
   background: var(--secondary-bg-color);
   padding: 0 10px;
+  position: relative;
 }
 
 .form__title {
@@ -57,6 +59,19 @@ input:focus {
   height: 20px;
   color: var(--main-theme-color);
   font-family: 'Cabin Sketch', cursive;
+}
+
+.form__error-message {
+  position: absolute;
+  display: inline;
+  left: 88px;
+  top: 36px;
+  color: var(--warning-theme-color);
+  font-size: .7rem;
+}
+
+.form__error-message.hidden {
+  display: none;
 }
 
 .list {
