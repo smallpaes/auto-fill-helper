@@ -33,7 +33,7 @@ function sendMessageWithListData (nameDataList) {
 }
 
 chrome.contextMenus.onClicked.addListener(async info => {
-  if (info.menuItemId !== "autoFill" || !info.editable) return
+  if (info.menuItemId !== 'autoFill' || !info.editable) return
   const nameDataList = await getDisplayedList(STORAGE_KEY)
   sendMessageWithListData(nameDataList)
 })
