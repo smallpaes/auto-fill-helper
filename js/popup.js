@@ -1,7 +1,6 @@
 const form = document.querySelector('.form')
 const nameInput = document.querySelector('.form__input')
 const displayedList = document.querySelector('.list')
-const emptyMessage = document.querySelector('.list__empty-message')
 const failedMessage = document.querySelector('.list__error-message')
 const inputErrorMessage = document.querySelector('.form__error-message')
 
@@ -88,6 +87,7 @@ function removeName(selectedName) {
 }
 
 function toggleEmptyMessage () {
+  const emptyMessage = document.querySelector('.list__empty-message')
   emptyMessage.classList.toggle('hidden')
 }
 
