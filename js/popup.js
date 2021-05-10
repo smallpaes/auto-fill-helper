@@ -18,7 +18,6 @@ class Name {
 }
 
 function displayList (...list) {
-  console.log(nameDataList)
   displayedList.innerHTML += list.map((nameData, index) => {
     return `
       <li 
