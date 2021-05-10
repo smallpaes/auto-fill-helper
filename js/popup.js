@@ -141,7 +141,11 @@ displayedList.addEventListener('click', async event => {
     const isDeleteIcon = event.target.classList.contains('list__item-delete-icon')
     const isCheckBox = event.target.classList.contains('list__item-checkbox')
     // update nameData selected state
-    isCheckBox && await updateSelectState(selectedName)
+    if (isCheckBox) {
+      await updateSelectState(selectedName)
+      event.target.toggleAttribute('checked')
+    }
+
     // remove selected nameData
     if (isDeleteIcon) {
       await removeName(selectedName)
