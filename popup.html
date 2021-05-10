@@ -11,17 +11,27 @@
   </head>
   <body>
     <section class="popup">
-      <!--Add new person-->
-      <form class="form">
-        <label for="name" class="form__title">New Name</label>
-        <input type="text" name="name" id="name" class="form__input" autofocus>
-        <span class="form__error-message hidden">Duplicate Name</span>
-      </form>
-      <!--Display name list-->
-      <ul class="list">
-        <li class="list__empty-message"><i class="far fa-surprise"></i> No one is added</li>
-        <li class="list__error-message hidden"><i class="far fa-sad-cry"></i> Something went wrong</li>
-      </ul>
+      <div class="popup__content hidden">
+        <!--Add new person-->
+        <form class="form">
+          <label for="name" class="form__title">New Name</label>
+          <input type="text" name="name" id="name" class="form__input" autofocus>
+          <span class="form__error-message hidden">Duplicate Name</span>
+        </form>
+        <!--Display name list-->
+        <ul class="list">
+          <li class="list__empty-message"><i class="far fa-surprise"></i> No one is added</li>
+        </ul>
+      </div>
+      <!--Error handling-->
+      <div class="error hidden">
+        <p class="error__message">Something went wrong</p>
+        <button class="error__refresh-btn" type="button"><i class="fas fa-redo-alt"></i> Reload</button>
+      </div>
+      <div class="loading">
+        <i class="fas fa-tree loading__icon"></i>
+        <p class="loading__message">Loading</p>
+      </div>
     </section>
     <script src="js/popup.js"></script>
   </body>

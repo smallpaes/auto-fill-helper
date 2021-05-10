@@ -1,8 +1,11 @@
 const form = document.querySelector('.form')
 const nameInput = document.querySelector('.form__input')
 const displayedList = document.querySelector('.list')
-const failedMessage = document.querySelector('.list__error-message')
 const inputErrorMessage = document.querySelector('.form__error-message')
+const errorBlock = document.querySelector('.error')
+const loadingBlock = document.querySelector('.loading')
+const reloadButton = document.querySelector('.error__refresh-btn')
+const popupContent = document.querySelector('.popup__content')
 
 const STORAGE_KEY = 'nameDataList'
 
@@ -42,11 +45,21 @@ function displayList (...list) {
   }).join('')
 }
 
+function resetPopup () {
+  errorBlock.classList.add('hidden')
+  loadingBlock.classList.remove('hidden')
+}
+
 function initDisplayList () {
+  // reset popup to initial state
+  resetPopup()
   // retrieve the list from the store
   chrome.storage.sync.get([STORAGE_KEY], storedNameDataList => {
+    loadingBlock.classList.add('hidden')
     // handle failed fetching data
-    if (chrome.runtime.lastError) return failedMessage.classList.remove('hidden')
+    if (chrome.runtime.lastError) return errorBlock.classList.remove('hidden')
+    // display popup content
+    popupContent.classList.remove('hidden')
     // pass the data retrieved
     nameDataList = storedNameDataList[STORAGE_KEY] || []
     // empty name data
@@ -160,5 +173,7 @@ displayedList.addEventListener('click', async event => {
 form.addEventListener('submit', handleFormSubmit)
 
 nameInput.addEventListener('input', validateInput)
+
+reloadButton.addEventListener('click', initDisplayList)
 
 document.addEventListener('DOMContentLoaded', initDisplayList)
