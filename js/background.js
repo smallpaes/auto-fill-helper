@@ -1,9 +1,9 @@
 const STORAGE_KEY = 'nameDataList'
 
 const contextMenuItems = {
-  "id": "autoFill",
-  "title": "Auto Fill",
-  "contexts": ["editable"],
+  'id': 'autoFill',
+  'title': 'Auto Fill',
+  'contexts': ['editable'],
 }
 
 // initialize the extension on installation
@@ -22,7 +22,7 @@ function getDisplayedList (key) {
   })
 }
 
-function sendMessageWithListData(nameDataList) {
+function sendMessageWithListData (nameDataList) {
   // send a message from the extension to content script of current tab
   chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
     chrome.tabs.sendMessage(tabs[0].id, { nameDataList })
@@ -32,7 +32,7 @@ function sendMessageWithListData(nameDataList) {
   })
 }
 
-chrome.contextMenus.onClicked.addListener(async (info, tab) => {
+chrome.contextMenus.onClicked.addListener(async info => {
   if (info.menuItemId !== "autoFill" || !info.editable) return
   const nameDataList = await getDisplayedList(STORAGE_KEY)
   sendMessageWithListData(nameDataList)
